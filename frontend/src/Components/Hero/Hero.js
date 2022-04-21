@@ -71,7 +71,7 @@ const Hero =()=>{
 
 {/* <Heromain> */}
 <Container>
-     <ImageContainer>
+     {/* <ImageContainer>
         <img src="Images/1.jpg" width={500} height={500} objectFit="none"/>
         <img src="Images/dress28.jpg" width={500} height={500} objectFit="none"/>
         <img src="Images/skirt2.jpg" width={500} height={500} objectFit="none"/>
@@ -83,7 +83,7 @@ const Hero =()=>{
         <img src="Images/kid12.jpg" width={500} height={500} objectFit="none"/>
 
 
-     </ImageContainer>
+     </ImageContainer> */}
     </Container>  
 {/* </Heromain> */}
 

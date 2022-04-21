@@ -2,6 +2,7 @@
 import React from "react"
 import Image from "next/image"
 import originlogo from "../../../public/Images/originlogo.jpg";
+import Link from "next/link" 
 import styled from "styled-components";
 import SupervisorAccountOutlinedIcon from '@mui/icons-material/SupervisorAccountOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
@@ -62,7 +63,7 @@ const Navbar = () =>{
   <p>Bags</p>
 
 
-<SupervisorAccountOutlinedIcon />
+<Link href="account/Register"><SupervisorAccountOutlinedIcon /></Link>
 <ShoppingCartOutlinedIcon />
 <Navicon>
 <Navinput>

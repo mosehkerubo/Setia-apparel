@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Navbar from "../src/Components/Navbar/Navbar";
 import Hero from "../src/Components/Hero/Hero";
+import Footer from "../src/Components/Footer/Footer";
 
 export default function Home() {
   return (
@@ -21,11 +22,13 @@ export default function Home() {
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
           crossorigin="anonymous"
-        ></script>
+        ></script> 
       </Head>
 
       <Navbar />
+      
       <Hero />
+      <Footer />
     </div>
   );
 }
