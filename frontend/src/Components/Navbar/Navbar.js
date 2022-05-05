@@ -1,82 +1,135 @@
-
-import React from "react"
-import Image from "next/image"
-import originlogo from "../../../public/Images/originlogo.jpg";
-import Link from "next/link" 
+import React, { useContext, useEffect, useState } from "react";
+import SetiaContext from "../../SetiaContext";
+// import Image from "next/image";
+import Link from "next/link";
 import styled from "styled-components";
-import SupervisorAccountOutlinedIcon from '@mui/icons-material/SupervisorAccountOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-const Navcontainer=styled.div`
- background:#415CB7;
-display:flex;
+import Badge from "@mui/material/Badge";
+// import image from "../../../public/Images/remove.png";
+import SupervisorAccountOutlinedIcon from "@mui/icons-material/SupervisorAccountOutlined";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import Footer from "../Footer/Footer";
+const Navcontainer = styled.div`
+  display: flex;
+  background-color:teal;
+`;
+const Navtop = styled.div`
+  display: flex;
+  flex-direction: row;
+  // // padding: 2em;
+  gap: 7em;
+  // justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+ 
+`;
+const Navicon = styled.div`
+  display: flex;
+  border: 1px solid white;
+  align-items: center;
+  padding: 0 1em;
+  border-radius: 20px;
+  background-color: white;
 
-`
-const Navtop=styled.div`
-display:flex;
-flex-direction:row;
-padding:2em;
-gap:2em;
-justify-content:center;
-align-items:center
-`
-const Navicon=styled.div`
-display:flex;
-border:2px solid  teal;
-align-items:center;
+`;
+const SearchContainer = styled.div`
+  padding: 0 1em;
+`;
+const Searchinput = styled.input`
+  border: none;
+  // background-color: teal;
+  outline: none;
+`;
 
+const Navsearch = styled.div``;
 
+const Navbar = () => {
+  // const [showCart, SetShowCart] = useState()
 
+  const { cartState, productState } = useContext(SetiaContext);
+  const [cart, setCart] = cartState;
 
-
-`
-const Navinput=styled.div`
-border:none;
-background-color:white;
-outline:none;
-
-
-
-
-`
-
-const Navsearch=styled.div`
-
-`
-
-const Navbar = () =>{
-  return(
-    <Navcontainer>
+  console.log(cart);
+  return (
     <div>
-      <Image src={originlogo} width="100px" height="100px"/>
+    <Navcontainer>
+            
+    <div className="navlogo">
+      <Link href={"/"}>
+      <img src="/Images/remove.png" width="100px" height="100px"/>
+      </Link>
     </div>
 
-    <Navtop>
- 
+      {/* <div>
+        <Image src={image} width='200px' height='400px' alt='fxrgfch'/>
+      </div> */}
+      <Navtop>
+        <div className="navcategory">
+        <Link href={"/categories/dresses"}>
+          <p>Dresses</p>
+        </Link>
 
-  <p>Dresses</p>
+        <Link href={"/categories/skirts"}>
+          <p>Skirts</p>
+        </Link>
 
-  <p>Skirts</p>
+        <Link href={"/categories/kids"}>
+          <p>Kids</p>
+        </Link>
 
-  <p>Kids</p>
+        <Link href={"/categories/bag"}>
+          <p>Bags</p>
+        </Link>
 
-  <p>Bags</p>
+        <Link href={"/categories/kimono"}>
+          <p>Kimono</p>
+        </Link>
+        </div>
+        {/* <Badge badgeContent={4} color="primary">
+      <MailIcon color="action" />
+    </Badge> */}
+
+    <div>
+      <Link href="/DisplayPage">
+      <button className="nav-btn" >All products</button>
+      </Link>
+      
+</div>
+<div>
+<Link href="/Addproduct">
+      <button className="nav-btn" >Add products</button>
+      </Link>
+</div>
+    <div className="nav-search">
 
 
-<Link href="account/Register"><SupervisorAccountOutlinedIcon /></Link>
-<ShoppingCartOutlinedIcon />
-<Navicon>
-<Navinput>
-<input type="text" placeholder="Search products"/>
-</Navinput>
-<Navsearch>
-<SearchOutlinedIcon />
-</Navsearch>
-  </Navicon>
- 
-</Navtop>
-
+        <Navsearch>
+          <Link href="/account/Register">
+            <SupervisorAccountOutlinedIcon className="search-loginicon" />
+          </Link>
+        </Navsearch>
+        <Link href={"/Cartpage"}>
+          <Badge badgeContent={cart.length} color="primary">
+            <ShoppingCartOutlinedIcon
+              color="black"
+              className="search-shopicon"
+            />
+          </Badge>
+        </Link>
+        {/* <ShoppingCartOutlinedIcon /> */}
+        <Navicon>
+          <SearchContainer>
+            <Searchinput type="text" placeholder="Search products" />
+          </SearchContainer>
+          <Navsearch>
+            <SearchOutlinedIcon className="search-loginicon" />
+          </Navsearch>
+        </Navicon>
+        </div>
+      </Navtop>
+     
     </Navcontainer>
-  )
-}
-export default Navbar
+    </div>
+  );
+};
+export default Navbar;

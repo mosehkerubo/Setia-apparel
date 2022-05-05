@@ -1,17 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
-// import
+import axios from "axios";
+import Navbar from "../src/Components/Navbar/Navbar";
 const Productcontainer = styled.div``;
-const ProductInput = styled.div``;
+const ProductInput = styled.div`
+margin:0 auto;
+border: 1px solid lightgray;
+width:55%;
+padding:1em;
+margin-top:50px;
+flex-direction:column;
+justify-content:center;
+align-items:center;`
 
 const Addproduct = () => {
+  // const [details,setDetails]=useState([])
+  // export default function Addproduct (){
   const [imgUrl, setImgUrl] = useState("");
-  const [disabled, setDisabled] = useState(false);
+  // const [disabled, setDisabled] = useState(false);
+  const [category, setCategory] = useState();
+
+
+
+const [message,setMessage]=useState("")
+
+
+
   const [productinput, setproductinput] = useState({
     productname: "",
-    productDescription: "",
     price: "",
     image: "",
+    category: "",
   });
 
   const uploadImage = async (e) => {
@@ -46,6 +65,8 @@ const Addproduct = () => {
     const producturl =
       "https://floating-badlands-09507.herokuapp.com/api/product/add";
 
+    console.log(productinput);
+
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -55,19 +76,30 @@ const Addproduct = () => {
     return fetch(producturl, options)
       .then((res) => res.json())
       .then((data) => {
-        if (data.code === 11000) {
-          console.log("added product");
-        } else {
-          console.log(data);
-          return data;
-        }
+        if (data.code === 79) {
+          setMessage(`${productinput.productname} has been added`)
+
+        } 
+        console.log(data)
       });
   }
 
+
+
+
+
+ 
   return (
+    <div>
+    <Navbar />
+<h2 style={{textAlign:"center"}}> Add a new Product</h2>
+{/* <div className="product-sms"> */}
+<p className="product-sms">{message}</p>
+{/* </div> */}
     <Productcontainer>
       <ProductInput>
-        <div className="form-floating mb-3">
+        <form className="addproduct-form">
+        {/* <div className="form-floating mb-3"> */}
           <input
             type="text"
             className="form-control"
@@ -80,11 +112,11 @@ const Addproduct = () => {
               })
             }
           />
-          <label for="floatingInput">productname</label>
-        </div>
+          {/* <label htmlFor="floatingInput">productname</label> */}
+        {/* </div> */}
 
         {/* productDescription */}
-        <div className="form-floating">
+        {/* <div className="form-floating"> */}
           <input
             type="text"
             className="form-control"
@@ -98,12 +130,12 @@ const Addproduct = () => {
             }
           />
 
-          <label for="floatingInput">productDescription</label>
-        </div>
+          {/* <label htmlFor="floatingInput">productDescription</label> */}
+        {/* </div> */}
 
         {/* size */}
 
-        <div className="form-floating mb-3">
+        {/* <div className="form-floating mb-3"> */}
           <input
             type="text"
             className="form-control"
@@ -113,10 +145,10 @@ const Addproduct = () => {
               setproductinput({ ...productinput, price: e.target.value })
             }
           />
-          <label for="floatingInput">price </label>
-        </div>
+          {/* <label htmlFor="floatingInput">price </label> */}
+        {/* </div> */}
 
-        <div className="form-floating">
+        {/* <div className="form-floating"> */}
           <input
             type="file"
             name="file"
@@ -125,7 +157,25 @@ const Addproduct = () => {
             placeholder="image"
             onChange={(e) => uploadImage(e)}
           />
-          <label for="floatingInput">image</label>
+          {/* <label htmlFor="floatingInput">image</label> */}
+        {/* </div> */}
+
+        <div>
+        <label for="lang">Choose category</label>
+          <select
+            name="category"
+            id="category"
+            onChange={(e) =>
+              setproductinput({ ...productinput, category: e.target.value })
+            }
+            value={productinput.category}
+          >
+            <option value="Kimono">kimono</option>
+            <option value="Skirts">Skirts</option>
+            <option value="Dresses">Dresses</option>
+            <option value="Kids">Kids</option>
+            <option value="Bag">Bag</option>
+          </select>
         </div>
 
         <button
@@ -135,10 +185,10 @@ const Addproduct = () => {
         >
           Add product
         </button>
+        </form>
       </ProductInput>
     </Productcontainer>
+    </div>
   );
 };
 export default Addproduct;
-
-

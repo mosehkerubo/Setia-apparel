@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import yup from "yup";
+import Footer from "../../src/Components/Footer/Footer";
+import Navbar from "../../src/Components/Navbar/Navbar";
 const LoginContainer = styled.div`
-  background-color: green;
+  // background-color: green;
   display:flex;
   flex-direction:column;
+  background-color:  lightgray;
+
   position:
 `;
 
@@ -40,6 +44,9 @@ const Login = () => {
   // }
 
   return (
+
+    <div>
+      <Navbar />
     <LoginContainer>
       <h2>Login</h2>
       {/* <Input type="email" placeholder="Email"/>
@@ -75,6 +82,8 @@ const Login = () => {
         </div>
       </>
     </LoginContainer>
+    <Footer/>
+    </div>
   );
 };
 

@@ -1,5 +1,9 @@
 import { Link } from "@mui/material";
 import React, { useState } from "react";
+import Footer from "../../src/Components/Footer/Footer";
+import Navbar from "../../src/Components/Navbar/Navbar";
+import Router from 'next/router'
+
 
 const Register = () => {
   const [userinput, setuserinput] = useState({
@@ -26,14 +30,19 @@ const Register = () => {
           console.log("user already registered");
         } 
         else {
+          Router.push('/')
             console.log('nnnnnnnnnnnn')
           console.log(data);
+          
           return data;
         }
       });
   }
 
   return (
+
+    <div className="register">
+      <Navbar/>
     <div className="card-body">
       <form>
         <form>
@@ -71,7 +80,8 @@ const Register = () => {
               }
             />
           </div>
-          <button className="btn btn-primary" onClick={handleRegister}>
+
+          <button className="btn btn-primary" onClick={handleRegister} >
                  Register
 
           </button>
@@ -80,6 +90,8 @@ const Register = () => {
 
         {/* <Link href="/account/register" className="btn btn-link">Register</Link> */}
       </form>
+    </div>
+    <Footer/>
     </div>
   );
 };

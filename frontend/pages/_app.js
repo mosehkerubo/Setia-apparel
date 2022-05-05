@@ -1,16 +1,18 @@
 import React from 'react'
-
+import { SetiaHelper } from '../src/SetiaContext'
 
 import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div>
+    <SetiaHelper>
   
   <Component {...pageProps} />
  
 
-  </div>
+  </SetiaHelper>
+
+
   )
 }
 
